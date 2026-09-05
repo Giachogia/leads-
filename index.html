@@ -3,207 +3,132 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NOVA RESIDENCE — Lead System</title>
+<title>Idea Development — Lead System Demo</title>
 <style>
-:root{--ink:#18352b;--cream:#f5f2eb;--line:#d9ded8;--gold:#c9a66b;--white:#fff}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--cream);color:#17241f}
-button,input{font:inherit}.app{max-width:460px;margin:auto;min-height:100vh;background:var(--white)}
-.screen{display:none;min-height:100vh}.screen.active{display:block}
-.hero{min-height:100vh;padding:28px 22px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,rgba(10,30,24,.18),rgba(10,30,24,.85)),url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85') center/cover;color:#fff}
-.logo{letter-spacing:5px;font-size:20px}.logo small{display:block;font-size:8px;letter-spacing:3px;margin-top:4px}
-.kicker{letter-spacing:2px;font-size:11px;text-transform:uppercase}.hero h1{font-family:Georgia,serif;font-size:44px;line-height:1.02;margin:15px 0}.hero p{line-height:1.6;max-width:350px}
-.btn{border:0;border-radius:14px;padding:16px 20px;background:var(--ink);color:#fff;cursor:pointer;width:100%;font-weight:700}.btn.light{background:#eee2d2;color:#1c3028}
-.top{padding:24px 22px 10px}.progress{height:5px;background:#e2e5e1;border-radius:9px;margin:15px 0 30px}.progress i{display:block;height:100%;background:var(--ink);border-radius:9px}.q{padding:0 22px}.q h2{font-family:Georgia,serif;font-size:29px;margin-bottom:8px}.muted{color:#68736e;font-size:14px}.options{display:grid;gap:12px;margin:26px 0}.opt{padding:18px;border:1px solid var(--line);border-radius:14px;background:#fff;text-align:left;cursor:pointer}.opt.selected{border:2px solid var(--ink);background:#f0f4ef}.nav{display:flex;gap:10px;padding:20px 22px}.nav .back{background:#eef0ed;color:var(--ink)}
-input{width:100%;padding:16px;border:1px solid var(--line);border-radius:12px;margin:8px 0 14px}.success{padding:55px 24px;text-align:center}.check{font-size:54px;color:var(--ink)}.dash{padding:24px;background:#f5f6f3;min-height:100vh}.dash h1{font-family:Georgia,serif}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.card{background:#fff;padding:14px;border-radius:12px}.num{font-size:24px;font-weight:700}.lead{background:#fff;border-radius:16px;padding:17px;margin-top:12px}.tag{display:inline-block;padding:6px 9px;border-radius:99px;font-size:11px;font-weight:700}.hot{background:#f6dfd8}.warm{background:#f4ead0}.cold{background:#e2e8e5}.row{display:flex;justify-content:space-between;gap:10px}.small{font-size:12px;color:#6b756f;line-height:1.6}.statusbar{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.statusbtn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:11px;cursor:pointer}.statusbtn.active{background:var(--ink);color:#fff}.lead-actions{display:flex;gap:6px;margin-top:10px}.lead-actions button{flex:1;border:0;border-radius:9px;padding:9px;background:#eef1ed;color:var(--ink);cursor:pointer;font-size:11px}.lead-actions button.primary{background:var(--ink);color:#fff}
+*{box-sizing:border-box}body{margin:0;background:#f4f2ed;color:#202b27;font-family:Arial,sans-serif}
+.wrap{max-width:980px;margin:auto;padding:24px 18px}.nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.logo{font-weight:800;letter-spacing:.4px}.tabs button{border:0;background:#fff;border:1px solid #ddd8cd;border-radius:10px;padding:9px 12px;margin-left:6px;cursor:pointer}
+.screen{display:none}.screen.active{display:block}.card{background:#fff;border:1px solid #e4e0d7;border-radius:20px;padding:25px;margin-bottom:16px;box-shadow:0 8px 28px #00000009}
+h1{font-size:38px;line-height:1.08;margin:10px 0 14px}h2{font-size:24px;margin:0 0 12px}p{line-height:1.6;color:#58645f}
+.hero{padding:38px}.badge{display:inline-block;background:#e9eee9;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:700}
+.btn{border:0;background:#202b27;color:#fff;border-radius:12px;padding:13px 17px;font-weight:700;cursor:pointer}.btn.secondary{background:#eef1ee;color:#202b27}
+.progress{height:7px;background:#e7e4dc;border-radius:99px;overflow:hidden;margin:18px 0}.bar{height:100%;width:0;background:#6f8178;transition:.2s}
+.optiongrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.opt{background:#fff;border:1px solid #ddd8cd;border-radius:13px;padding:14px;text-align:left;cursor:pointer}.opt.selected{border:2px solid #202b27}
+input{width:100%;padding:13px;border:1px solid #d9d5cb;border-radius:11px;font-size:15px;margin:7px 0 13px}
+.match{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.apt{border:1px solid #ddd8cd;border-radius:15px;padding:17px}.price{font-size:20px;font-weight:800;margin:7px 0}
+.score{padding:16px;border-radius:14px}.hot{background:#f8e9e6}.warm{background:#f7f0df}.cold{background:#e9eeec}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:#fff;border:1px solid #e4e0d7;border-radius:14px;padding:16px}.num{font-size:27px;font-weight:800}
+.lead{border:1px solid #ddd8cd;border-radius:14px;padding:16px;margin-top:10px}.row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.pill{padding:6px 9px;border-radius:99px;font-size:12px;font-weight:800}.pill.hot{background:#f3d8d3}.pill.warm{background:#eee0bd}.pill.cold{background:#dce5e1}
+.small{font-size:12px;color:#77837d}.empty{text-align:center;padding:30px;color:#77837d}
+@media(max-width:720px){h1{font-size:31px}.optiongrid,.match,.metrics{grid-template-columns:1fr}.hero{padding:25px}.tabs button{padding:8px 9px}}
 </style>
 </head>
 <body>
-<div class="app">
+<div class="wrap">
+<div class="nav"><div class="logo">IDEA DEVELOPMENT • LEAD SYSTEM</div><div class="tabs"><button onclick="show('landing')">Demo</button><button onclick="show('dashboard')">Dashboard</button></div></div>
 
-<section id="home" class="screen active hero">
-  <div><div class="logo">NOVA <small>RESIDENCE</small></div></div>
-  <div>
-    <div class="kicker">თბილისი • ახალი საცხოვრებელი პროექტი</div>
-    <h1>იპოვე ბინა,<br>რომელიც შენს<br>მოთხოვნებს მოერგება.</h1>
-    <p>უპასუხე რამდენიმე მარტივ კითხვას და მიიღე შენს ბიუჯეტსა და მოთხოვნებზე მორგებული ვარიანტები.</p>
-    <button class="btn light" onclick="go(1)">იპოვე ჩემი ბინა →</button>
-  </div>
+<section id="landing" class="screen active">
+<div class="card hero">
+<span class="badge">INTERACTIVE PILOT DEMO</span>
+<h1>იპოვე ბინა, რომელიც შენს მოთხოვნას შეესაბამება.</h1>
+<p>უპასუხე რამდენიმე მოკლე კითხვას და ნახე შენს მოთხოვნაზე მორგებული ვარიანტები.</p>
+<button class="btn" onclick="startQuiz()">დაწყება →</button>
+</div>
+<div class="card"><h2>როგორ მუშაობს?</h2><p>კითხვარი → Smart Match → საკონტაქტო ინფორმაცია → Lead Score → Sales Dashboard</p></div>
 </section>
 
 <section id="quiz" class="screen">
-  <div class="top"><div class="logo" style="color:var(--ink)">NOVA <small>RESIDENCE</small></div><div class="progress"><i id="bar"></i></div><div class="muted" id="step"></div></div>
-  <div class="q" id="question"></div>
-  <div class="nav"><button class="btn back" onclick="prev()">← უკან</button><button class="btn" onclick="next()">შემდეგი →</button></div>
+<div class="card">
+<div class="small" id="stepLabel"></div><div class="progress"><div class="bar" id="bar"></div></div>
+<div id="question"></div>
+<div class="row"><button class="btn secondary" id="back" onclick="prev()">← უკან</button><button class="btn" id="next" onclick="next()">შემდეგი →</button></div>
+</div>
 </section>
 
-<section id="match" class="screen">
-  <div class="top">
-    <div class="logo" style="color:var(--ink)">NOVA <small>RESIDENCE</small></div>
-    <div class="progress"><i style="width:100%"></i></div>
-  </div>
-  <div class="q">
-    <div class="kicker" style="color:var(--ink)">SMART MATCH</div>
-    <h2>თქვენთვის შერჩეული ვარიანტები</h2>
-    <p class="muted">თქვენი პასუხების მიხედვით შევარჩიეთ რამდენიმე შესაბამისი ბინა.</p>
-    <div id="matches" class="options"></div>
-    <button class="btn" onclick="show('contact')">მინდა კონსულტაცია →</button>
-  </div>
+<section id="result" class="screen">
+<div class="card">
+<span class="badge">SMART MATCH</span><h1>შენთვის შერჩეული ვარიანტები</h1>
+<p id="resultText"></p><div class="match" id="matches"></div>
+</div>
+<div class="card"><h2>გინდა კონსულტაცია?</h2>
+<p>დატოვე საკონტაქტო ინფორმაცია და გაყიდვების მენეჯერი დაგიკავშირდება.</p>
+<input id="name" placeholder="სახელი"><input id="phone" placeholder="ტელეფონი">
+<button class="btn" onclick="saveLead()">მოთხოვნის გაგზავნა</button>
+</div>
 </section>
 
-<section id="contact" class="screen">
-  <div class="top"><div class="logo" style="color:var(--ink)">NOVA <small>RESIDENCE</small></div><div class="progress"><i style="width:100%"></i></div></div>
-  <div class="q">
-    <h2>თითქმის მზადაა!</h2><p class="muted">დაგვიტოვე საკონტაქტო ინფორმაცია და ჩვენი კონსულტანტი დაგიკავშირდება შესაბამისი ვარიანტებით.</p>
-    <label>სახელი</label><input id="name" placeholder="მაგ. გიორგი">
-    <label>ტელეფონი</label><input id="phone" placeholder="+995 5XX XX XX XX">
-    <label>დამატებითი ინფორმაცია</label><input id="note" placeholder="არასავალდებულო">
-    <button class="btn" onclick="submitLead()">მოთხოვნის გაგზავნა</button>
-  </div>
+<section id="success" class="screen">
+<div class="card hero"><span class="badge">REQUEST RECEIVED</span><h1>მადლობა! მოთხოვნა მიღებულია.</h1><p>დემო რეჟიმში ლიდი შენს ბრაუზერში შეინახა და Dashboard-ში გამოჩნდება.</p><button class="btn" onclick="show('dashboard');renderDashboard()">Dashboard →</button></div>
 </section>
 
-<section id="done" class="screen success">
-  <div class="check">✓</div><h1>მოთხოვნა მიღებულია!</h1>
-  <p class="muted">ჩვენმა გუნდმა მიიღო თქვენი მოთხოვნა და დაგიკავშირდებათ შესაბამისი ბინების ვარიანტებით.</p>
-  <button class="btn" onclick="go(0)">დაბრუნება მთავარ გვერდზე</button>
-  <button class="btn" style="margin-top:10px;background:#e9eee9;color:var(--ink)" onclick="showDash()">Dashboard-ის ნახვა (დემო)</button>
-</section>
-
-<section id="dashboard" class="screen dash">
-  <div class="row">
-    <div><div class="logo" style="color:var(--ink)">NOVA</div><div class="small">DEVELOPER DASHBOARD</div></div>
-    <button class="btn" style="width:auto;padding:10px 14px" onclick="go(0)">Demo</button>
-  </div>
-  <h1>დღის სურათი</h1>
-  <div class="cards">
-    <div class="card"><div class="num" id="total">12</div><div class="small">ახალი ლიდი</div></div>
-    <div class="card"><div class="num" id="hotCount">4</div><div class="small">HOT</div></div>
-    <div class="card"><div class="num" id="warmCount">6</div><div class="small">WARM</div></div>
-    <div class="card"><div class="num" id="coldCount">2</div><div class="small">COLD</div></div>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <div class="small">რა ხდება?</div>
-    <b id="insight">ყველაზე მოთხოვნადია 2-საძინებლიანი ბინები.</b>
-  </div>
-  <h2>ლიდები</h2><div class="card"><div class="small"><b>HOT</b> — ახლავე დასაკავშირებელი &nbsp; <b>WARM</b> — მოსამზადებელი &nbsp; <b>COLD</b> — გრძელვადიანი</div></div>
-  <div style="display:flex;gap:8px;overflow:auto;padding-bottom:8px">
-    <button class="opt" style="white-space:nowrap;padding:10px 14px" onclick="filterLeads('ALL')">ყველა</button>
-    <button class="opt" style="white-space:nowrap;padding:10px 14px" onclick="filterLeads('HOT')">🔥 HOT</button>
-    <button class="opt" style="white-space:nowrap;padding:10px 14px" onclick="filterLeads('WARM')">🟡 WARM</button>
-    <button class="opt" style="white-space:nowrap;padding:10px 14px" onclick="filterLeads('COLD')">⚪ COLD</button>
-  </div>
-  <div id="leads"></div>
+<section id="dashboard" class="screen">
+<div class="card"><span class="badge">SALES DASHBOARD • DEMO</span><h1>შემომავალი ლიდები</h1><p>ეს არის დემო ვერსია. მონაცემები ინახება მხოლოდ ამ ბრაუზერში (localStorage).</p></div>
+<div class="metrics">
+<div class="metric"><div class="num" id="hotCount">0</div>HOT</div>
+<div class="metric"><div class="num" id="warmCount">0</div>WARM</div>
+<div class="metric"><div class="num" id="coldCount">0</div>COLD</div>
+<div class="metric"><div class="num" id="totalCount">0</div>სულ</div>
+</div>
+<div class="card"><div id="leads"></div></div>
 </section>
 </div>
 
 <script>
-const qs=[
- ['რას ეძებ?',['ბინა','საინვესტიციო ქონება','კომერციული ფართი']],
- ['რა ბიუჯეტი გაქვს?',['100,000₾-მდე','100,000–150,000₾','150,000–250,000₾','250,000₾+']],
- ['რამდენი საძინებელი გჭირდება?',['1 საძინებელი','2 საძინებელი','3 საძინებელი','4+ საძინებელი']],
- ['რომელ უბანს განიხილავ?',['საბურთალო','ვაკე','ისანი','დიდი დიღომი','გლდანი','სხვა უბანი']],
- ['როდის გეგმავ შეძენას?',['ახლავე','1–3 თვეში','3–6 თვეში','მხოლოდ ვათვალიერებ']]
+const questions=[
+ {key:'type',title:'რას ეძებ?',opts:['საცხოვრებელ ბინას','საინვესტიციო ბინას','ჯერ ვიკვლევ ვარიანტებს']},
+ {key:'budget',title:'რა არის შენი სავარაუდო ბიუჯეტი?',opts:['$80k–$120k','$120k–$180k','$180k+']},
+ {key:'rooms',title:'რამდენი საძინებელი გჭირდება?',opts:['1','2','3+']},
+ {key:'area',title:'რომელ ლოკაციაზე ხარ ორიენტირებული?',opts:['ვაკე','საბურთალო','ღია ვარ სხვა ვარიანტებისთვის']},
+ {key:'timing',title:'როდის ფიქრობ შეძენას?',opts:['ახლა / 1 თვე','1–3 თვე','3+ თვე / ჯერ ვიკვლევ']}
 ];
-let step=0, answers=[], leads=[], activeFilter='ALL';
-const demoLeads=[
- {n:'გიორგი კ.',p:'+995 5XX XX XX XX',answers:['ბინა','150,000–250,000₾','2 საძინებელი','საბურთალო','1–3 თვეში'],sc:87,status:'HOT',currentStatus:'ახალი'},
- {n:'ნინო მ.',p:'+995 5XX XX XX XX',answers:['ბინა','100,000–150,000₾','2 საძინებელი','დიდი დიღომი','3–6 თვეში'],sc:62,status:'WARM',currentStatus:'ახალი'},
- {n:'ლუკა ბ.',p:'+995 5XX XX XX XX',answers:['საინვესტიციო ქონება','250,000₾+','3 საძინებელი','ვაკე','ახლავე'],sc:99,status:'HOT',currentStatus:'ახალი'},
- {n:'ანა ს.',p:'+995 5XX XX XX XX',answers:['ბინა','100,000₾-მდე','1 საძინებელი','ისანი','მხოლოდ ვათვალიერებ'],sc:40,status:'COLD',currentStatus:'ახალი'}
-];
+let step=0, answers={};
 
 function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active')}
-function go(n){if(n===0)show('home');else {step=n-1; render()} window.scrollTo(0,0)}
-function render(){show('quiz');document.getElementById('step').textContent=(step+1)+'/5';document.getElementById('bar').style.width=((step+1)/5*100)+'%';let [title,opts]=qs[step];document.getElementById('question').innerHTML='<h2>'+title+'</h2><p class="muted">აირჩიე შენთვის ყველაზე შესაბამისი ვარიანტი.</p><div class="options">'+opts.map((o,i)=>`<button class="opt ${answers[step]===o?'selected':''}" onclick="pick('${o.replaceAll("'","\\'")}')">${o}<span style="float:right">›</span></button>`).join('')+'</div>'}
-function pick(v){answers[step]=v;render()}
-function next(){
- if(!answers[step]){alert('გთხოვ, აირჩიე ერთ-ერთი ვარიანტი.');return}
- if(step<qs.length-1){step++;render()}else {renderMatches();show('match')}
+function startQuiz(){step=0;answers={};show('quiz');renderQ()}
+function renderQ(){
+ const q=questions[step]; document.getElementById('stepLabel').textContent=`ნაბიჯი ${step+1} / ${questions.length}`;
+ document.getElementById('bar').style.width=((step+1)/questions.length*100)+'%';
+ document.getElementById('question').innerHTML=`<h2>${q.title}</h2><div class="optiongrid">${q.opts.map(o=>`<button class="opt ${answers[q.key]===o?'selected':''}" onclick="choose('${q.key}',this.textContent)">${o}</button>`).join('')}</div>`;
+ document.getElementById('back').style.visibility=step?'visible':'hidden';
+ document.getElementById('next').textContent=step===questions.length-1?'შედეგების ნახვა →':'შემდეგი →';
 }
-function prev(){if(step>0){step--;render()}else show('home')}
-function score(){let s=40;if(answers[4]==='ახლავე')s+=35;else if(answers[4]==='1–3 თვეში')s+=25;else if(answers[4]==='3–6 თვეში')s+=12;if(answers[1]==='250,000₾+')s+=20;else if(answers[1]==='150,000–250,000₾')s+=12;return Math.min(99,s)}
-
-const apartments=[
- {name:'A12',area:72,bed:2,district:'საბურთალო',price:165000},
- {name:'B07',area:68,bed:2,district:'საბურთალო',price:158000},
- {name:'C18',area:91,bed:3,district:'ვაკე',price:225000},
- {name:'D04',area:54,bed:1,district:'ისანი',price:112000},
- {name:'E21',area:78,bed:2,district:'დიდი დიღომი',price:142000},
- {name:'F09',area:105,bed:3,district:'საბურთალო',price:238000}
-];
-function renderMatches(){
- const budget=answers[1]||'', bedrooms=answers[2]||'', district=answers[3]||'';
- const nums=bedrooms.match(/\d+/); const targetBed=nums?parseInt(nums[0]):null;
- const range=budget.match(/[\d,]+/g)?.map(x=>parseInt(x.replaceAll(',','')))||[];
- let min=0,max=Infinity;
- if(range.length===1 && budget.includes('მდე')) max=range[0];
- if(range.length>=2){min=range[0];max=range[1]}
- if(budget.includes('+')){min=range[0];max=Infinity}
- const ranked=apartments.map(a=>{
-   let s=0,why=[];
-   if(targetBed!==null && a.bed===targetBed){s+=40;why.push('საძინებლების მოთხოვნას ემთხვევა')}
-   if(district && a.district===district){s+=35;why.push('სასურველ უბანშია')}
-   if(a.price>=min && a.price<=max){s+=25;why.push('თქვენს ბიუჯეტშია')}
-   else if(Math.abs(a.price-(min||a.price))<25000){s+=10;why.push('ბიუჯეტთან ახლოსაა')}
-   return {...a,s,why};
- }).sort((a,b)=>b.s-a.s).slice(0,3);
- document.getElementById('matches').innerHTML=ranked.map(a=>`
-   <div class="opt" style="cursor:default">
-     <div class="row"><b>ბინა ${a.name}</b><b>${a.price.toLocaleString('en-US')}₾</b></div>
-     <div class="small" style="margin-top:7px">${a.area} მ² • ${a.bed} საძინებელი • ${a.district}</div>
-     <div style="margin-top:10px;font-size:13px;color:var(--ink)">✓ ${a.why.slice(0,2).join(' • ')||'მოთხოვნებთან ახლოს'}</div>
-   </div>`).join('');
+function choose(k,v){answers[k]=v;renderQ()}
+function next(){if(!answers[questions[step].key]){alert('გთხოვ, აირჩიე ერთი პასუხი.');return} if(step<questions.length-1){step++;renderQ()}else{renderResult()}}
+function prev(){if(step>0){step--;renderQ()}else{show('landing')}}
+function score(a){
+ let s=0;if(a.timing==='ახლა / 1 თვე')s+=3;else if(a.timing==='1–3 თვე')s+=2;else s+=1;
+ if(a.budget==='$180k+')s+=3;else if(a.budget==='$120k–$180k')s+=2;else s+=1;
+ if(a.type==='საცხოვრებელ ბინას')s+=2;else if(a.type==='საინვესტიციო ბინას')s+=2;else s+=1;
+ return s>=7?'HOT':s>=5?'WARM':'COLD'
 }
-
-function submitLead(){
- let n=document.getElementById('name').value.trim(),p=document.getElementById('phone').value.trim();
- if(!n||!p){alert('გთხოვ, შეავსე სახელი და ტელეფონი.');return}
- let sc=score(),status=sc>=75?'HOT':sc>=50?'WARM':'COLD';
- leads.unshift({n,p,answers:[...answers],sc,status});
- show('done');
+function renderResult(){
+ const scoreName=score(answers);document.getElementById('resultText').textContent=`შენი მოთხოვნის მიხედვით შევარჩიეთ რამდენიმე შესაბამისი მიმართულება.`;
+ const inventory=[
+ ['Idea Panorama II','2 საძინებელი • ~98 მ²','ვაკე / საბურთალო'],
+ ['Kera','2 საძინებელი • ~105 მ²','ვაკე'],
+ ['ალტერნატიული ვარიანტი','3 საძინებელი • ~146 მ²','შესაბამისი ალტერნატივა']
+ ];
+ document.getElementById('matches').innerHTML=inventory.map(x=>`<div class="apt"><b>${x[0]}</b><div class="price">${x[1]}</div><div class="small">${x[2]}</div></div>`).join('');
+ show('result');window.currentScore=scoreName;
 }
-function allLeads(){return [...leads,...demoLeads]}
-function showDash(){
- show('dashboard');
- renderDashboard();
+function saveLead(){
+ const name=document.getElementById('name').value.trim(),phone=document.getElementById('phone').value.trim();
+ if(!name||!phone){alert('გთხოვ, შეავსე სახელი და ტელეფონი.');return}
+ const leads=JSON.parse(localStorage.getItem('ideaLeads')||'[]');
+ leads.unshift({id:Date.now(),name,phone,answers,score:window.currentScore||score(answers),status:'ახალი',created:new Date().toLocaleString('ka-GE')});
+ localStorage.setItem('ideaLeads',JSON.stringify(leads));show('success');
 }
 function renderDashboard(){
- const list=allLeads();
- const counts={HOT:0,WARM:0,COLD:0};
- list.forEach(l=>counts[l.status]++);
- document.getElementById('total').textContent=list.length;
- document.getElementById('hotCount').textContent=counts.HOT;
- document.getElementById('warmCount').textContent=counts.WARM;
- document.getElementById('coldCount').textContent=counts.COLD;
-
- const visible=activeFilter==='ALL'?list:list.filter(l=>l.status===activeFilter);
- document.getElementById('leads').innerHTML=visible.map((l,i)=>`
- <div class="lead">
-   <div class="row">
-     <div><b>${l.n}</b><div class="small">${l.currentStatus||'ახალი'}</div></div>
-     <span class="tag ${l.status.toLowerCase()}">${l.status} • ${l.sc}/100</span>
-   </div>
-   <div class="small" style="margin-top:8px">
-     ${l.answers.join(' • ')}<br>${l.p}
-   </div>
-   <div class="small" style="margin-top:8px;color:var(--ink)">
-     🎯 Smart Match: <b>${Math.min(99,l.sc+3)}%</b>
-   </div>
-   <div class="lead-actions">
-     <button class="primary" onclick="setLeadStatus(${i},'დავუკავშირდი')">დავუკავშირდი</button>
-     <button onclick="setLeadStatus(${i},'შეხვედრა')">შეხვედრა</button>
-     <button onclick="setLeadStatus(${i},'მოგებული')">მოგებული</button>
-   </div>
- </div>`).join('');
+ const leads=JSON.parse(localStorage.getItem('ideaLeads')||'[]');
+ document.getElementById('hotCount').textContent=leads.filter(x=>x.score==='HOT').length;
+ document.getElementById('warmCount').textContent=leads.filter(x=>x.score==='WARM').length;
+ document.getElementById('coldCount').textContent=leads.filter(x=>x.score==='COLD').length;
+ document.getElementById('totalCount').textContent=leads.length;
+ const box=document.getElementById('leads');
+ if(!leads.length){box.innerHTML='<div class="empty">ჯერ ლიდები არ არის. გაიარე Demo და დატოვე სატესტო მოთხოვნა.</div>';return}
+ box.innerHTML=leads.map(l=>`<div class="lead"><div class="row"><b>${l.name}</b><span class="pill ${l.score.toLowerCase()}">${l.score}</span></div><p>📞 ${l.phone}<br>💰 ${l.answers.budget} • 🛏 ${l.answers.rooms} • 📍 ${l.answers.area} • ⏱ ${l.answers.timing}</p><div class="small">${l.created} • სტატუსი: ${l.status}</div></div>`).join('');
 }
-function setLeadStatus(index,status){
- const list=allLeads();
- const l=list[index];
- if(!l)return;
- l.currentStatus=status;
- alert('დემო: '+l.n+' → '+status);
- renderDashboard();
-}
-function filterLeads(f){activeFilter=f;renderDashboard()}
+document.querySelector('.tabs button:nth-child(2)').addEventListener('click',renderDashboard);
 </script>
 </body>
 </html>
